@@ -27,6 +27,7 @@ export class DataService {
   getPokemons() {
     return this.http.get(`${this.pokeAPI}?limit=10`);
   }
+  
   getMoreData(name: string) {
     return this.http.get(`https://pokeapi.co/api/v2/pokemon/${name}`);
 
@@ -43,6 +44,17 @@ export class DataService {
       }),
     ).subscribe();
   }
+
+quitarFav(pokemon) {
+    var Favoritos = JSON.parse(localStorage.getItem('Favoritos') || "[]") || [];
+    Favoritos.splice(Favoritos.indexOf(pokemon.id), 1)
+    localStorage.setItem('Favoritos', JSON.stringify(Favoritos));
+    localStorage.Favoritos = JSON.stringify(Favoritos);
+  }
+
+
+
+
 
 
 

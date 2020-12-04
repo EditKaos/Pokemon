@@ -23,4 +23,9 @@ export class FavoritosComponent implements OnInit {
   ngOnInit(): void {
 
   }
+  quitarFav(pokemon) {
+    this.dataService.quitarFav(pokemon);
+  }
+
+  
 }

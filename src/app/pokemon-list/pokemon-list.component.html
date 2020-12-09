@@ -6,9 +6,7 @@
                 <img [src]="pokemon.sprites.front_default">
             </div>
             <div class="card-text">
-                <div class="portada">
-
-                </div>
+                <div class="portada"></div>
                 <div class="title-total">
                     <div class="title">{{pokemon.types[0].type.name}}</div>
                     <h2>{{pokemon.name}}</h2>
@@ -33,7 +31,7 @@
 
 
                     <div class="actions">
-                        <h4> Agregar a favoritos</h4> <button (click)="AgregaPokemon(pokemon)"
+                        <h4> Agregar a favoritos</h4> <button (click)="AgregaPokemon(pokemon.name)"
                             class="fancy-button pop-onhover bg-gradient3"><span>Agregar</span></button>
                     </div>
                 </div>
@@ -45,7 +43,7 @@
         </div>
     </div>
 </div>
-<div class="div2">
+ <div class="div2">
     <app-favoritos></app-favoritos>
 
-</div>
+</div> 

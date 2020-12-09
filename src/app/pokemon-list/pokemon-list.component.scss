@@ -1,4 +1,6 @@
 .div1 {
+	padding-top: 50px;
+
 	width: 85%;
 	float: left;
 	height: 100%;
@@ -13,7 +15,7 @@
     display: grid;
     grid-gap: 10px;
     padding: 20px;
-    grid-template-columns: repeat(auto-fit, minmax(23%,1fr));
+    grid-template-columns: repeat(auto-fit, minmax(25%,1fr));
 }
 .Pokemon-Crud .Box{
     width: 100%;
@@ -81,7 +83,8 @@ $dark: #1B5166;
 }
 
 .title-total {
-  padding: 2.5em 1.5em 1.5em 1.5em;
+
+  padding: 5em 1em 1em 1em;
 }
 
 path {
@@ -111,11 +114,6 @@ path {
 	background: $startColor;
 	background: linear-gradient(to right,  $startColor 0%, $endColor 80%,$endColor 100%);
 }
-
-
-
-
-
 
 .bg-gradient3 span,
 .bg-gradient3:before {
@@ -162,12 +160,7 @@ background: none;
 		transform-style: preserve-3d;
 		transition: all 0.3s ease-out;
 	}
-	i {
-		margin-top: -1px;
-		margin-right: 20px;
-		font-size: 1.265em;
-		vertical-align: middle;
-	}
+
 	span {
 		display: inline-block;
 		padding: 10px 30px;
@@ -226,3 +219,34 @@ background: none;
 		}
 	}
 }
+
+
+@media only screen and (max-width: 1200px) {
+	.div1 {
+	width: 85%;
+
+	}
+	
+	.Pokemon-Crud{
+		display: grid;
+		grid-gap: 10px;
+		padding: 20px;
+		grid-template-columns: repeat(auto-fit, minmax(40%,1fr));
+	}
+	
+	
+	
+  }
+
+
+   @media only screen and (max-width: 768px) {
+	
+	.Pokemon-Crud{
+		display: grid;
+		grid-gap: 10px;
+		padding: 20px;
+		grid-template-columns: repeat(auto-fit, minmax(100%,1fr));
+	}
+	
+	
+  } 

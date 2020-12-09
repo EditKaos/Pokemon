@@ -12,6 +12,8 @@ import { Pokemon } from '../types'
 })
 export class DataService {
   pokeAPI: string;
+  pokemons: any[] = []
+
   constructor(
     private http: HttpClient
   ) {
@@ -19,6 +21,7 @@ export class DataService {
     if (!pokemonDataExite) {
       pokemonDataExite = [];
     }
+
     this.itemsSubject.next(pokemonDataExite);
 
     this.pokeAPI = environment.pokemonURL;
@@ -27,7 +30,7 @@ export class DataService {
   getPokemons() {
     return this.http.get(`${this.pokeAPI}?limit=10`);
   }
-  
+
   getMoreData(name: string) {
     return this.http.get(`https://pokeapi.co/api/v2/pokemon/${name}`);
 
@@ -45,13 +48,35 @@ export class DataService {
     ).subscribe();
   }
 
-quitarFav(pokemon) {
-    var Favoritos = JSON.parse(localStorage.getItem('Favoritos') || "[]") || [];
-    Favoritos.splice(Favoritos.indexOf(pokemon.id), 1)
-    localStorage.setItem('Favoritos', JSON.stringify(Favoritos));
-    localStorage.Favoritos = JSON.stringify(Favoritos);
-  }
 
+  AgregaPokemon2(pokemon: Pokemon) {
+    this.pokemons.push(pokemon);
+    let pokemons = [];
+    if (localStorage.getItem('Favoritos') === null) {
+      pokemons = [];
+      pokemons.push(pokemon);
+      localStorage.setItem('Favoritos', JSON.stringify(pokemons));
+    } else {
+      pokemons = JSON.parse(localStorage.getItem('Favoritos'));
+      pokemons.push(pokemon);
+      localStorage.setItem('Favoritos', JSON.stringify(pokemons));
+    }
+  }
+  
+  
+  PokemonsFa() {
+    if (localStorage.getItem('Favoritos') === null) {
+    } else {
+      var favoritos = JSON.parse(localStorage.getItem('Favoritos') || "[]");
+      for (let i = 0; i <= favoritos.length; i++) {
+        this.getMoreData(favoritos[i])
+          .subscribe((responsePok: any) => {
+            this.pokemons.push(responsePok)
+          });
+      }
+    }
+    return this.pokemons;
+  }
 
 
 

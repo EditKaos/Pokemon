@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../service/data.service';
-import { Pokemon } from '../types';
 
 
 @Component({
@@ -10,6 +9,7 @@ import { Pokemon } from '../types';
 })
 export class PokemonListComponent implements OnInit {
   pokemons: any[] = []
+
   constructor(
     private dataService: DataService
   ) { }
@@ -25,38 +25,10 @@ export class PokemonListComponent implements OnInit {
         });
       });
   }
-  /*  AgregaPokemon(pokemon) {
-    this.dataService.addPokemon(pokemon)
-  }  */
-
-  /*  AgregaPokemon(pokemon: Pokemon) {
-    this.pokemons.push(pokemon);
-    let pokemons = [];
-    if(localStorage.getItem('Favoritos') === null) {
-      pokemons = [];
-      pokemons.push(pokemon);
-      localStorage.setItem('Favoritos', JSON.stringify(pokemons));
-    } else {
-      pokemons = JSON.parse(localStorage.getItem('Favoritos'));
-      pokemons.push(pokemon); 
-      localStorage.setItem('Favoritos', JSON.stringify(pokemons));
-    }
-  }  */
-
-
-
-  AgregaPokemon(pokemon: Pokemon) {
-    console.log(pokemon);
+  AgregaPokemon(pokemon) {
     this.dataService.AgregaPokemon2(pokemon);
+
   }
-
-
-
-
-
-
-
-
 }
 
 

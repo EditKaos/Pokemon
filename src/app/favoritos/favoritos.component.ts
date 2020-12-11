@@ -1,6 +1,6 @@
+
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { DataService, } from '../service/data.service';
-import { Pokemon } from '../types'
 
 
 @Component({
@@ -11,55 +11,26 @@ import { Pokemon } from '../types'
 
 export class FavoritosComponent implements OnInit {
   constructor(private dataService: DataService) { }
-  pokemonsFav: any[] = [];
-
+  pokemonsFav = [];
 
   ngOnInit() {
     this.pokemonsFav = this.dataService.PokemonsFa();
   }
-
-  /* PokemonsFa() {
-    var favoritos = JSON.parse(localStorage.getItem('Favoritos') || "[]");
-    for (let i = 0; i <= favoritos.length; i++) {
-      this.dataService.getMoreData(favoritos[i])
-        .subscribe((responsePok: any) => {
-          this.pokemonsFav.push(responsePok)
-
-        });
-    }
-  } */
-
-  /*   PokemonsFa() {
-      if (localStorage.getItem('Favoritos') === null) {
-        this.pokemonsFav = [];
-      } else {
-        var favoritos = JSON.parse(localStorage.getItem('Favoritos') || "[]");
-        for (let i = 0; i <= favoritos.length; i++) {
-          this.dataService.getMoreData(favoritos[i])
-            .subscribe((responsePok: any) => {
-              this.pokemonsFav.push(responsePok)
+  ngDoCheck(): void {
+    
+  }
   
-            });
-        }
-      }
-      return this.pokemonsFav;
-    } */
-
-
-  /*    quitarFav(favoritos) {
-      var Favoritos = JSON.parse(localStorage.getItem('Favoritos') || "[]");
-      Favoritos.splice(Favoritos.indexOf(favoritos.name), 1);
-      localStorage.setItem('Favoritos', JSON.stringify(Favoritos));
-      localStorage.Favoritos = JSON.stringify(Favoritos);
-      this.pokemonsFav.push(Favoritos);
-      this.PokemonsFa();
-    }  */
+ 
 
   quitarFav(favoritos) {
+    var Favoritos = JSON.parse(localStorage.getItem('Favoritos') || "[]")
     for (let i = 0; i < this.pokemonsFav.length; i++) {
       if (favoritos == this.pokemonsFav[i]) {
+        Favoritos.splice(Favoritos.indexOf(favoritos.name), 1);
         this.pokemonsFav.splice(i, 1);
-        localStorage.setItem('Favoritos', JSON.stringify(this.pokemonsFav));
+        localStorage.setItem('Favoritos', JSON.stringify(Favoritos));
+
+
       }
     }
   }
